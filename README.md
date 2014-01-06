@@ -7,7 +7,7 @@ The Arduino code captures the data from the sensor and sends it to Processing ov
 All these projects use the Quaternion output from Arduino but other are also available.
 
 - cube orientation - gives the orienation of the sensor
-- hotspot - controls a hotspot on image. moving the sensor left,right,up,down controls the hotspot position on the screen
+- hotspot - controls a hotspot on image, it highlights a certain section of the image. Moving the sensor left,right,up,down controls the hotspot position on the screen
 - picture - uses the webcam, rotating the sensor on itself changes the tint of the image output. Tilting the sensor to the left takes a picture and saves it a folder
 - match - 3d output that maps the orientation of the sensor on all 3 coordinates
 
