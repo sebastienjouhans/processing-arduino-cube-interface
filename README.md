@@ -4,7 +4,8 @@ Processing and Arduino - Cube Interface
 This project is the code RGA cube interface developed for a workshop in Amsterdam. Thanks to the MPU6050 sensor and the data it outputs we know its orientation.
 
 The Arduino code captures the data from the sensor and sends it to Processing over the Serial port.
-All these projects use the Quaternion output from Arduino but other are also available.
+All these projects use the Quaternion (http://en.wikipedia.org/wiki/Quaternion) output from Arduino in order to avoid gimbal lock (http://en.wikipedia.org/wiki/Gimbal_lock) but other output such as roll, raw, picth are also available.
+
 
 - cube orientation - gives the orienation of the sensor
 - hotspot - controls a hotspot on image, it highlights a certain section of the image. Moving the sensor left,right,up,down controls the hotspot position on the screen
