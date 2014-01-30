@@ -25,7 +25,7 @@ void setup() {
   loadMusic();
    
   // listt all available serial port
-  //println(Serial.list());
+  println(Serial.list());
   
   // get port name of where the arduino is plugged in 
   // this will change depending on the USB port where the Arduino board is plugged in
@@ -96,7 +96,7 @@ void draw() {
   // get sensor rotations in degrees from the sensor
   Rotations rotations = getSensorRotation(q);
 
-  //println("x_degree = "+rotations.x + ", y_degree=" + rotations.y + ", z_degree=" + rotations.z );
+  println("x_degree = "+rotations.x + ", y_degree=" + rotations.y + ", z_degree=" + rotations.z );
   
   // make sure to reset all states if the cube is in neutral position
   resetAllStates(rotations);
@@ -135,7 +135,7 @@ void cubeManipulation(Rotations rotations)
   
   
    // previous track
-  else if (rotations.y < -40 && IsCubeInNeutralPosition()) 
+  else if (rotations.z < -40 && (togglePlaySelected == false && prevSelected == false && nextSelected == false)) 
   {
     println("prev");
     prev();
@@ -144,7 +144,7 @@ void cubeManipulation(Rotations rotations)
   
   
    // next track
-  else if (rotations.y > 40 && IsCubeInNeutralPosition()) 
+  else if (rotations.z > 40 && (togglePlaySelected == false && prevSelected == false && nextSelected == false)) 
   {
     println("next");
     next();
@@ -152,16 +152,16 @@ void cubeManipulation(Rotations rotations)
   }
   
   // 
-  else if (IsCubeInNeutralPosition()) 
+  else if ((togglePlaySelected == false && prevSelected == false && nextSelected == false)) 
   {
     
     // map degree scale rotation from -90 to 90 to gains scale from -80 to 5db
-    float newVol = map(rotations.z, 90, -90, -45, 5);
+    float newVol = map(rotations.y, 0, -190, -45, 5);
     int volRounded = floor(newVol);
     
     // make sure gain volume is in between -45 and 5
     if (volRounded < -45) volRounded = -45;
-    if (volRounded > 5) volRounded = 5;
+    else if (volRounded > 5) volRounded = 5;
     
     if (volRounded != volume) 
     {
