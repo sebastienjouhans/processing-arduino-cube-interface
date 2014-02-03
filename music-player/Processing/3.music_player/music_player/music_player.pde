@@ -16,6 +16,11 @@ float x_degree = 0;
 float y_degree = 0;
 float z_degree = 0;
 
+// tilt sensitivity
+float x_tilt = 20;
+float y_tilt = 20;
+float z_tilt = 30;
+
 
 // properties to keep track of what state the cube is on
 boolean togglePlaySelected;
@@ -36,7 +41,7 @@ void setup() {
   
   // get port name of where the arduino is plugged in 
   // this will change depending on the USB port where the Arduino board is plugged in
-  String portName = Serial.list()[2];
+  String portName = Serial.list()[5];
   
   // open the serial port
   port = new Serial(this, portName, 38400);
@@ -117,13 +122,13 @@ void cubeManipulation()
 {
 
   // toggle play / pause
- if (x_degree <- 10 && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
+ if (x_degree <- x_tilt && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
  {    
     println("toggle play / pause");
     togglePlay();
     togglePlaySelected = true;
   }
-  else if(x_degree >=- 10)
+  else if(x_degree >=- x_tilt)
   {
     togglePlaySelected = false;
   }
@@ -132,13 +137,13 @@ void cubeManipulation()
   
   
    // previous track
-  if (y_degree > 10 && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
+  if (y_degree > y_tilt && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
   {
     println("prev");    
     prev();
     prevSelected = true;
   }
-  else if(y_degree <= 10)
+  else if(y_degree <= y_tilt)
   {
     prevSelected = false;
   }
@@ -146,14 +151,14 @@ void cubeManipulation()
   
   
    // next track
-  if (y_degree < -10  && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
+  if (y_degree < -y_tilt  && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
   {
     println("next");    
     next();
     nextSelected = true;
     
   }
-  else if(y_degree >= -10)
+  else if(y_degree >= -y_tilt)
   {
     nextSelected = false;
   }
@@ -167,7 +172,7 @@ void cubeManipulation()
     
     // map degree scale rotation from 90 to -130 to gains scale from -45 to 5db
     // because the AudioPlayer works with gain
-    float volMapped = map(-z_degree-30, 90, -130, -45, 5);
+    float volMapped = map(-z_degree-z_tilt, 90, -130, -45, 5);
     int volRounded = floor(volMapped);
     if (volRounded < -45) volRounded = -45;
     if (volRounded > 5) volRounded = 5;
