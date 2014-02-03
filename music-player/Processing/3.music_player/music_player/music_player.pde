@@ -105,8 +105,9 @@ void draw() {
 
   //println("x_degree = "+x_degree + ", y_degree=" + y_degree + ", z_degree=" + z_degree );
   
+  
   // make sure to reset all states if the cube is in neutral position
-  resetAllStates();
+  //resetAllStates();
   
   cubeManipulation();
   
@@ -116,6 +117,7 @@ void draw() {
 
 void resetAllStates()
 {
+  println("reset");
   if (x_degree >- 40) {
     togglePlaySelected = false;
   }
@@ -131,43 +133,63 @@ void resetAllStates()
 
 void cubeManipulation()
 {
-  
+
   // toggle play / pause
- if (x_degree <- 40 && IsCubeInNeutralPosition()) 
- {
-    println("toggle play/stop");
+ if (x_degree <- 40 && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
+ {    
+    println("toggle play / pause");
     togglePlay();
     togglePlaySelected = true;
   }
+  else if(x_degree >=- 40)
+  {
+    togglePlaySelected = false;
+  }
+  
+  
   
   
    // previous track
-  else if (y_degree < -40 && IsCubeInNeutralPosition()) 
+  if (y_degree > 40 && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
   {
-    println("prev");
+    println("prev");    
     prev();
     prevSelected = true;
   }
+  else if(y_degree <=40)
+  {
+    prevSelected = false;
+  }
+  
   
   
    // next track
-  else if (y_degree > 40 && IsCubeInNeutralPosition()) 
+  if (y_degree < -40  && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
   {
-    println("next");
+    println("next");    
     next();
     nextSelected = true;
+    
+  }
+  else if(y_degree >= -40)
+  {
+    nextSelected = false;
   }
   
+  
+  
+  
   // 
-  else if (IsCubeInNeutralPosition()) 
+  if (prevSelected == false && nextSelected == false && togglePlaySelected==false) 
   {
     
     // map degree scale rotation from 90 to -130 to gains scale from -45 to 5db
     // because the AudioPlayer works with gain
-    float volMapped = map(z_degree-110, 90, -130, -45, 5);
+    float volMapped = map(-z_degree-110, 90, -130, -45, 5);
     int volRounded = floor(volMapped);
     if (volRounded < -45) volRounded = -45;
     if (volRounded > 5) volRounded = 5;
+
     //println(volRounded);
     if (volRounded != volume) 
     {     
