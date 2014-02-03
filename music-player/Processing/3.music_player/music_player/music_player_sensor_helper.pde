@@ -16,6 +16,6 @@ void getSensorRotation(float[] q)
     float z_rad = asin(2*(q[1] * q[3] - q[0] * q[2]));
     
     x_degree = radianToDegree(-x_rad);
-    z_degree = radianToDegree(y_rad+0.77190705);
+    z_degree = radianToDegree(y_rad);
     y_degree = radianToDegree(z_rad);
 }

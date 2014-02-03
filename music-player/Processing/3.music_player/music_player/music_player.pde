@@ -104,30 +104,12 @@ void draw() {
   getSensorRotation(q);
 
   //println("x_degree = "+x_degree + ", y_degree=" + y_degree + ", z_degree=" + z_degree );
-  
-  
-  // make sure to reset all states if the cube is in neutral position
-  //resetAllStates();
-  
+    
   cubeManipulation();
   
 }
 
 
-
-void resetAllStates()
-{
-  println("reset");
-  if (x_degree >- 40) {
-    togglePlaySelected = false;
-  }
-  if (y_degree > -40) {
-    prevSelected = false;
-  }
-  if (y_degree < 40) {
-    nextSelected = false;
-  }
-}
 
 
 
@@ -135,13 +117,13 @@ void cubeManipulation()
 {
 
   // toggle play / pause
- if (x_degree <- 40 && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
+ if (x_degree <- 10 && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
  {    
     println("toggle play / pause");
     togglePlay();
     togglePlaySelected = true;
   }
-  else if(x_degree >=- 40)
+  else if(x_degree >=- 10)
   {
     togglePlaySelected = false;
   }
@@ -150,13 +132,13 @@ void cubeManipulation()
   
   
    // previous track
-  if (y_degree > 40 && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
+  if (y_degree > 10 && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
   {
     println("prev");    
     prev();
     prevSelected = true;
   }
-  else if(y_degree <=40)
+  else if(y_degree <= 10)
   {
     prevSelected = false;
   }
@@ -164,14 +146,14 @@ void cubeManipulation()
   
   
    // next track
-  if (y_degree < -40  && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
+  if (y_degree < -10  && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
   {
     println("next");    
     next();
     nextSelected = true;
     
   }
-  else if(y_degree >= -40)
+  else if(y_degree >= -10)
   {
     nextSelected = false;
   }
@@ -179,17 +161,17 @@ void cubeManipulation()
   
   
   
-  // 
+  // volume update
   if (prevSelected == false && nextSelected == false && togglePlaySelected==false) 
   {
     
     // map degree scale rotation from 90 to -130 to gains scale from -45 to 5db
     // because the AudioPlayer works with gain
-    float volMapped = map(-z_degree-110, 90, -130, -45, 5);
+    float volMapped = map(-z_degree-30, 90, -130, -45, 5);
     int volRounded = floor(volMapped);
     if (volRounded < -45) volRounded = -45;
     if (volRounded > 5) volRounded = 5;
-println(z_degree);
+    println(z_degree);
     //println(volRounded);
     if (volRounded != volume) 
     {     
@@ -200,10 +182,6 @@ println(z_degree);
 }
 
 
-boolean IsCubeInNeutralPosition()
-{
-  return (togglePlaySelected == false && prevSelected == false && nextSelected == false);
-}
 
 
 
