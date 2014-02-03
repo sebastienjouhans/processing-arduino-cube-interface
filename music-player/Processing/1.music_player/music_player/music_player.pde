@@ -3,6 +3,7 @@
 import processing.serial.*;
 import processing.opengl.*;
 
+int interval = 0;
 
 // store instance of the Serial class
 Serial port;
@@ -11,7 +12,7 @@ Serial port;
 float[] q = new float[4];
 
 
-int interval = 0;
+
 
 
 void setup() {
@@ -48,7 +49,7 @@ void serialEvent(Serial port)
 {
   //read the whole string in the buffer
   String inString = (port.readString());
-  //print(inString); 
+  print(inString); 
         
   //split the string everytime a tab is met and store the values in an array string
   String[] dataStrings = split(inString, '\t');
@@ -63,13 +64,13 @@ void serialEvent(Serial port)
       q[2] = float(dataStrings[3]); //y
       q[3] = float(dataStrings[4]); //z
           
-      print(q[0]);
-      print(", ");
-      print(q[1]);
-      print(", ");
-      print(q[2]);
-      print(", ");
-      println(q[3]);
+//      print(q[0]);
+//      print(", ");
+//      print(q[1]);
+//      print(", ");
+//      print(q[2]);
+//      print(", ");
+//      println(q[3]);
     } 
       
   }

@@ -10,6 +10,13 @@ Serial port;
 // stores data representing the rotation coming from the arduino
 float[] q = new float[4];
 
+
+// degree rotation of the sensor
+float x_degree = 0;
+float y_degree = 0;
+float z_degree = 0;
+
+
 // properties to keep track of what state the cube is on
 boolean togglePlaySelected;
 boolean prevSelected;
@@ -94,48 +101,48 @@ void draw() {
   }
   
   // get sensor rotations in degrees from the sensor
-  Rotations rotations = getSensorRotation(q);
+  getSensorRotation(q);
 
-  println("x_degree = "+rotations.x + ", y_degree=" + rotations.y + ", z_degree=" + rotations.z );
+  //println("x_degree = "+x_degree + ", y_degree=" + y_degree + ", z_degree=" + z_degree );
   
   // make sure to reset all states if the cube is in neutral position
-  resetAllStates(rotations);
+  resetAllStates();
   
-  cubeManipulation(rotations);
+  cubeManipulation();
   
 }
 
 
 
-void resetAllStates(Rotations rotations)
+void resetAllStates()
 {
-  if (rotations.x >- 40) {
+  if (x_degree >- 40) {
     togglePlaySelected = false;
   }
-  if (rotations.y > -40) {
+  if (y_degree > -40) {
     prevSelected = false;
   }
-  if (rotations.y < 40) {
+  if (y_degree < 40) {
     nextSelected = false;
   }
 }
 
 
 
-void cubeManipulation(Rotations rotations)
+void cubeManipulation()
 {
   
   // toggle play / pause
- if (rotations.x <- 40 && IsCubeInNeutralPosition()) 
+ if (x_degree <- 40 && IsCubeInNeutralPosition()) 
  {
-    println("toggle play");
+    println("toggle play/stop");
     togglePlay();
     togglePlaySelected = true;
   }
   
   
    // previous track
-  else if (rotations.z < -40 && (togglePlaySelected == false && prevSelected == false && nextSelected == false)) 
+  else if (y_degree < -40 && IsCubeInNeutralPosition()) 
   {
     println("prev");
     prev();
@@ -144,7 +151,7 @@ void cubeManipulation(Rotations rotations)
   
   
    // next track
-  else if (rotations.z > 40 && (togglePlaySelected == false && prevSelected == false && nextSelected == false)) 
+  else if (y_degree > 40 && IsCubeInNeutralPosition()) 
   {
     println("next");
     next();
@@ -152,20 +159,18 @@ void cubeManipulation(Rotations rotations)
   }
   
   // 
-  else if ((togglePlaySelected == false && prevSelected == false && nextSelected == false)) 
+  else if (IsCubeInNeutralPosition()) 
   {
     
-    // map degree scale rotation from -90 to 90 to gains scale from -80 to 5db
-    float newVol = map(rotations.y, 0, -190, -45, 5);
-    int volRounded = floor(newVol);
-    
-    // make sure gain volume is in between -45 and 5
+    // map degree scale rotation from 90 to -130 to gains scale from -45 to 5db
+    // because the AudioPlayer works with gain
+    float volMapped = map(z_degree-110, 90, -130, -45, 5);
+    int volRounded = floor(volMapped);
     if (volRounded < -45) volRounded = -45;
-    else if (volRounded > 5) volRounded = 5;
-    
+    if (volRounded > 5) volRounded = 5;
+    //println(volRounded);
     if (volRounded != volume) 
-    {
-      println(volRounded);
+    {     
       changeVolume(volRounded);
       volume = volRounded;
     }

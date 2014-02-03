@@ -3,6 +3,7 @@
 import processing.serial.*;
 import processing.opengl.*;
 
+int interval = 0;
 
 // store instance of the Serial class
 Serial port;
@@ -11,7 +12,10 @@ Serial port;
 float[] q = new float[4];
 
 
-int interval = 0;
+// degree rotation of the sensor
+float x_degree = 0;
+float y_degree = 0;
+float z_degree = 0;
 
 
 void setup() {
@@ -88,9 +92,9 @@ void draw() {
   }
   
   // get sensor rotations in degrees from the sensors
-  Rotations rotations = getSensorRotation(q);
+  getSensorRotation(q);
 
-  println("x_degree = "+rotations.x + ", y_degree=" + rotations.y + ", z_degree=" + rotations.z );
+  println("x_degree = "+x_degree + ", y_degree=" + y_degree + ", z_degree=" + z_degree );
 
 }
 
