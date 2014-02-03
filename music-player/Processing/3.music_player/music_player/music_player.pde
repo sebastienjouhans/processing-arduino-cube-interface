@@ -189,7 +189,7 @@ void cubeManipulation()
     int volRounded = floor(volMapped);
     if (volRounded < -45) volRounded = -45;
     if (volRounded > 5) volRounded = 5;
-
+println(z_degree);
     //println(volRounded);
     if (volRounded != volume) 
     {     

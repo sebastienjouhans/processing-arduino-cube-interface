@@ -1,7 +1,7 @@
 import ddf.minim.*;
 
 Minim minim;
-AudioPlayer[] player = new AudioPlayer[3];
+AudioPlayer[] player = new AudioPlayer[12];
 int trackCounter = 0;
 boolean paused;
 
@@ -12,9 +12,19 @@ void loadMusic()
   minim = new Minim(this);
   
   //load mp3 files from the data folder and store them a list called player
-  player[0] = minim.loadFile("Movin on Up.mp3");
-  player[1] = minim.loadFile("Dancing In The Street.mp3");
-  player[2] = minim.loadFile("Once In A Lifetime.mp3");
+  player[0] = minim.loadFile("01 Raga Bhupali.mp3");
+  player[1] = minim.loadFile("02 Pocket Calculator.mp3");
+  player[2] = minim.loadFile("03 Sing.mp3");
+  player[3] = minim.loadFile("04 Choronzon.mp3");
+  player[4] = minim.loadFile("05 Maze.mp3");
+  player[5] = minim.loadFile("06 The Word Before Last.mp3");
+  player[6] = minim.loadFile("07 Its Not Right.mp3");
+  player[7] = minim.loadFile("08 Changeling.mp3");
+  player[8] = minim.loadFile("09 Playground For A Wedgeless Firm.mp3");
+  player[9] = minim.loadFile("10 Bonzai.mp3");
+  player[10] = minim.loadFile("11 Chase.mp3");
+  player[11] = minim.loadFile("12 Radio Waves.mp3");
+  
   
   trackCounter = 0;
   paused = true;
