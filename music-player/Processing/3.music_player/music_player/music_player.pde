@@ -122,7 +122,7 @@ void cubeManipulation()
 {
 
   // toggle play / pause
- if (x_degree <- x_tilt && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
+ if (x_degree < -x_tilt && prevSelected == false && nextSelected == false && togglePlaySelected==false) 
  {    
     println("toggle play / pause");
     togglePlay();
