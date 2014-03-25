@@ -15,4 +15,4 @@ This project makes use of the work done here:
 https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050
 
 This is the schematic for the project
-[![schematic](https://raw.github.com/sebastienjouhans/processing-arduino-cube-interface/master/fritzing-schematic/Sketch_bb.jpg)](#features)
+[![schematic](https://raw.githubusercontent.com/sebastienjouhans/processing-arduino-cube-interface/master/schematic/cube.jpg)](#features)
