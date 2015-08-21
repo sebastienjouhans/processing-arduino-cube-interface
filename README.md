@@ -21,7 +21,7 @@ This is the schematic for the project:
 
 This project was used at the IXDA 2014
 
-This is where the slide for the presentation are:
+This is where the slides for the presentation are:
 http://www.slideshare.net/sebastienjouhans/getting-real-with-connected-devices-presentation
 
 You can find the Tumblr page dedicated to the event here: http://rgaixda14.tumblr.com/
