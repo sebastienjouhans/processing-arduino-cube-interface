@@ -14,5 +14,14 @@ All these projects use the Quaternion (http://en.wikipedia.org/wiki/Quaternion) 
 This project makes use of the work done here: 
 https://github.com/jrowberg/i2cdevlib/tree/master/Arduino/MPU6050
 
-This is the schematic for the project
+This is the schematic for the project:
 [![schematic](https://raw.githubusercontent.com/sebastienjouhans/processing-arduino-cube-interface/master/schematic/cube.jpg)](#features)
+
+------------------------------------------------
+
+This project was used at the IXDA 2014
+
+This is where the slide for the presentation are:
+http://www.slideshare.net/sebastienjouhans/getting-real-with-connected-devices-presentation
+
+You can find the Tumblr page dedicated to the event here: http://rgaixda14.tumblr.com/
